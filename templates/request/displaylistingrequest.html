@@ -1,0 +1,35 @@
+
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="gap">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+
+
+          {% for request in requests %}
+            <div class="well row clearfix">
+                <div class="col-md-4 column">
+                   <!--  <img alt="140x140" src="http://lorempixel.com/140/140/" /> -->
+                   <h5> {{ request.event.name }} </h5>
+                </div>
+              
+                <div class="col-md-4 column">
+               <h5> {{ request.event.email }} </h5>
+                 
+                </div>
+              
+                <div class="col-md-4 column">
+                     <a href="{% url "request_detail" request.pk %}"><button type="button" class="btn btn-block btn-info">Send Quote</button></a>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

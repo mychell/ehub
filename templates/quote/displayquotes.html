@@ -1,0 +1,44 @@
+
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="gap">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+
+      {% if quotes %}
+          {% for quote in quotes %}
+            <div class="well row clearfix">
+                <div class="col-md-4 column">
+                   <!--  <img alt="140x140" src="http://lorempixel.com/140/140/" /> -->
+                   <h5> {{ quote.name }} </h5>
+                </div>
+              
+                <div class="col-md-4 column">
+                <h5>{{ quote.quoterequest.listing.title }}</h5>
+                <p> {{ quote.quoterequest.listing.address}}</p>
+                
+                </div>
+              
+                <div class="col-md-4 column">
+                     <a href="{{ quote.file.url}}"><button type="button" class="btn btn-block btn-info">Download</button></a>
+                </div>
+            </div>
+
+            {% endfor %}
+            {% else %}
+            <div class="well row clearfix">
+                <div class="col-md-8 column">
+                   <!--  <img alt="140x140" src="http://lorempixel.com/140/140/" /> -->
+                   <h5> Awaiting Quote from venue Owner </h5>
+                </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

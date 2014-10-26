@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<section class="gap">
+
+  <div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+        
+          
+          <h3>
+            Event's Description
+          </h3>
+          <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+           <label> Event name: </label> {{ request.event.name}}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label> event date </label> <p> {{ request.event.event_date}}</p>
+          <label>budget: </label><p> {{ request.event.total_budget}}</p>
+        </div>
+        <div class="panel-footer">
+          Panel footer
+        </div>
+      </div>
+      
+
+          <h3>
+           Venue Details
+          </h3>
+          <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+           <label> Venue name: </label> {{ request.listing.title}}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label> address</label> <p> {{ request.listing.address}}</p>
+          <label> capacity</label><p> {{ request.listing.capacity}}</p>
+        </div>
+        <!-- <div class="panel-footer">
+          
+        </div> -->
+      </div>
+        </div>
+
+
+        <div class="col-md-6 column">
+   
+      
+
+        
+      
+        <div class=" row clearfix">
+        <div class="col-md-12 column">
+        <h3> Send Quote : </h3>
+           <div class="panel panel-default">
+
+        <div class="panel-heading">
+         <p><label> customer name:</label> {{ request.event.owner}}</p>
+        </div>
+        <div class="panel-body">
+         {% include "quote/quote.html" %}
+        </div>
+       
+      </div>
+        
+        </div>
+      </div>
+    <!-- 
+        <div class="well row clearfix">
+        <div class="col-md-12 column">
+          <a href="{% url "inquiry_create" %}"> <button type="button" class="btn btn-lg btn-danger btn-block">Get Quote</button></a>
+        </div>
+      </div> -->
+
+     
+  
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+{% endblock %}

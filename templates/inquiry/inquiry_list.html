@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<section class="gap">
+<div class="container">
+ {% if object_list %}
+        <h3>Pending Events</h3>
+                  
+          <table class="table table-striped ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Quest Request</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inquiry in object_list %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{inquiry.name}}</td>
+      <td>{{inquiry.requests}} Quote Request </td>
+      <td>
+      <div class="btn-group">
+         <a href='{% url "inquiry_edit" pk=inquiry.id %}'><button class="btn btn-primary" type="button"><em class="glyphicon glyphicon-align-left"></em> Edit</button></a>
+         <a href="{% url "inquiry_delete" pk=inquiry.id %}"> <button class="btn btn-danger" type="button"><em class="glyphicon glyphicon-align-center"></em> Delete</button></a> 
+         <a href='{% url "request" pk=inquiry.id %}'><button class="btn btn-success" type="button"><em class="glyphicon glyphicon-align-right"></em> View</button></a>
+      </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> 
+{% else %}
+
+<h4> you have no events, create one </h4>
+{% endif %}
+        </div>
+        </section>
+{% endblock %}

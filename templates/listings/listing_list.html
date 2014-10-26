@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<section class="gap">
+<div class="container">
+ {% if listing_list %}
+        <h3>Venues </h3>
+                   
+          <table class="table table-striped ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Note</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for listing in object_list %}
+    <tr class="text">
+      <td>{{ forloop.counter }}</td>
+      <td>{{listing.title}}</td>
+      <td>{{listing.requests}} Quote Request</td>
+      <td>
+      <div class="btn-group">
+         <a href='{% url "listing_edit" pk=listing.id %}'><button class="btn btn-primary" type="button"><em class="glyphicon glyphicon-align-left"></em> Edit</button></a>
+         <a href="{% url "listing_delete" pk=listing.id %}"> <button class="btn btn-danger" type="button"><em class="glyphicon glyphicon-align-center"></em> Delete</button></a> 
+         <a href='{% url "listing_request" pk=listing.id %}'><button class="btn btn-success" type="button"><em class="glyphicon glyphicon-align-right"></em> View</button></a>
+      </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> 
+{% else %}
+
+<p> you have no venue listing to display</p>
+<p> <a href="{% url "listing_create" %}">click here </a>to list your venue of EVENTSHUB and make extra income from your unused venue</p> 
+
+{% endif %}
+
+
+
+        </div>
+        </section>
+{% endblock %}

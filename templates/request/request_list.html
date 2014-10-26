@@ -1,0 +1,68 @@
+
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="gap">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+
+{% if request_list %}
+<h4> Quote Requests </h4>
+<hr/>
+          {% for request in request_list %}
+            <div class="well row clearfix">
+                <div class="col-md-4 column">
+                    <img alt="140x140" src="http://lorempixel.com/140/140/" />
+                </div>
+              
+                <div class="col-md-4 column">
+               <h4> {{ request.listing.title }} </h4>
+            
+                 <p>{{ request.listing.address }}</p>
+                   status: 
+                </div>
+
+              
+                <div class="col-md-4 column">
+                   <a href="{% url "quote_detail" request.pk%}">  <button type="button" class="btn btn-block btn-info">View </button></a>
+                </div>
+            </div>
+
+            {% endfor %}
+            {% else %}
+
+<p> you have not requested any quote for this event </p>
+<p> search for one and request a quote</p>
+<form class="col-lg-12" method="GET" action="/search">
+          
+            <div class="input-group input-group-lg col-sm-offset-3 col-sm-6">
+              <input class="center-block form-control input-lg" name="q" title="Enter Location." placeholder="Enter Location" type="text">
+              <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit">Search</button></span>
+            </div>
+          </form>
+{% endif %}
+        </div>
+        
+
+        <div class="col-md-4 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Event Details
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p>Event Name: {{ inquiry.name }}<p>
+                     <p>EVent Date: {{ inquiry.event_date}}<p>
+                      <p>Budget: ₦{{ inquiry.total_budget}}<p>
+                </div>
+                <div class="panel-footer">
+                   <a href="{% url "inquiry_delete" inquiry.id %}"> <button type="button" class="btn btn-block btn-primary">Cancel Event</button> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

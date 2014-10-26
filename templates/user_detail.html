@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load i18n  %}
+{% block content %}
+
+<div class="gap">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+
+
+				<div class="col-md-4 column text-center">
+				<h3>{{object.username}}</h3>
+                    <hr class="star-primary">
+  <div class="panel panel-default">
+            <div class="panel-body">
+			  <div class="row">
+			  <div class="col-md-6 column text-center">
+					<img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+				</div>
+				<div class="col-md-6 column text-center">
+				<div class="row clearfix ">
+				</div>
+				<div class="row clearfix">
+				</div>
+					{% if object.username == user.username %}
+				<div class="col-md-12 ">
+					<a href='{% url "edit_profile" %}' type="button" class="btn btn-primary"><span class="fa fa-gear"></span>Edit Profile </a>  
+				</div><!--/col-->
+				{% endif %} 
+				</div>
+				     </div>    
+				
+			  </div><!--/row-->
+              </div><!--/panel-body-->
+          </div><!--/panel-->
+
+          				<div class="col-md-4 column text-center">
+				<h3>Events</h3>
+                    <hr class="star-primary">
+  <div class="panel panel-default">
+            <div class="">
+			  <div class="row">
+		
+					<a href='{% url "inquiry_list" %}' type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span>View Your Events </a>  
+			
+				</div>
+				     </div>    
+				
+			  </div>
+              </div>
+
+
+          				<div class="col-md-4 column text-center">
+				<h3>Venues</h3>
+                    <hr class="star-primary">
+  <div class="panel panel-default">
+            <div class="">
+			  <div class="row">
+		
+					<a href='{% url "listing_list" %}' type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span>View Your Venues </a>  
+			
+				</div>
+				     </div>    
+				
+			  </div>
+              </div>
+         
+
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

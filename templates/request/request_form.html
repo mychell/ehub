@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<section class="gap">
+
+  <div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="row clearfix">
+        <div class="col-md-8 column">
+        <h3> {{listing.title}} </h3>
+
+       
+          <div class="carousel slide" id="carousel-665874">
+            <ol class="carousel-indicators">
+            {% for img in listing.images.all %}
+           
+            {% if forloop.counter = 1 %}
+              <li data-slide-to="0" data-target="#carousel-665874" class="active">
+              </li>
+              {% else %}
+              <li data-slide-to="0" data-target="#carousel-665874">
+              </li>
+              {% endif %}
+            {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+            {% for img in listing.images.all %}
+            {% if forloop.counter = 1 %}
+                  
+              <div class="item active ">
+              <div class="thumbnail">
+                <img alt="" src="{{img}}" height="500px"  />
+                <div class="carousel-caption">
+                </div>
+              </div>
+              </div>
+      {% else %}
+          <div class="item ">
+              <div class="thumbnail">
+                <img alt="" src="{{img}}"  height="500px" />
+                <div class="carousel-caption">
+                </div>
+              </div>
+              </div>
+      {% endif %}
+      {% endfor %}
+            </div> 
+            
+          <!--  <a class="left carousel-control" href="#carousel-665874" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-665874" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> -->
+            
+          </div>
+        
+          <h4>
+            Description
+          </h4>
+          <p>
+             {{ listing.description }}
+          </p>
+          <div class="row clearfix">
+        <div class="col-md-12 column">
+            
+          <div class="col-md-4 column"> 
+          {% for listing in listing.features.all %}
+          {% if forloop.first %}<h4>Additional details:</h4>{%endif%}
+            <p class="text-info">  {{ listing}}</p>  
+           {% if forloop.counter = 15 %}
+              </div>
+              
+              <div class="col-md column"> 
+              <br/>
+              <br/>
+              {% endif %} 
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+        </div>
+
+
+        <div class="col-md-4 column">
+          <div class="well row clearfix">
+        <div class="col-md-12 column">
+           <center><p>STARTING FROM</p><h2>₦{{listing.price}}</h2></center>
+        </div>
+      </div>
+
+        
+      {% if request %}
+        <div class="well row clearfix">
+        <div class="col-md-12 column">
+         {% include "request/request.html" %}
+        </div>
+      </div>
+      {% else %}
+        <div class="well row clearfix">
+        <div class="col-md-12 column">
+          <a href="{% url "inquiry_create" %}"> <button type="button" class="btn btn-lg btn-danger btn-block">Get Quote</button></a>
+        </div>
+      </div>
+      {% endif %}
+      <div class="well row clearfix">
+        <div class="col-md-12 column">
+          <div class="row clearfix">
+            <div class="col-md-4 column">
+            <center><p class="text-success">CAPACITY</p>
+            <h4>{{ listing.capacity }}</h4></center>
+            </div>
+            {% for variation in object.vdetails.all %}
+            {% if variation.price  %}
+          <div class="col-md-4 column"> 
+              <center><p class="text-info">  {{ variation.title|upper }}</p>
+            <h4>{{ variation.price }}</h4></center>
+            
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+        <div class="well row clearfix">
+        <div class="col-md-12 column">
+          <div class="row clearfix">
+          
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="row clearfix">
+            <div class="col-md-4 column">
+            </div>
+            <div class="col-md-4 column">
+            </div>
+            <div class="col-md-4 column">
+            </div>
+          </div>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+{% endblock %}
